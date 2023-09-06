@@ -1,0 +1,25 @@
+{
+  "name": "parabank_first5",
+  "version": "1.0.0",
+  "description": "git # parabank_first5 Overview - ParaBank is a demo site used for simulating a realistic online banking website ([link](https://parabank.parasoft.com/parabank/index.htm)). It has the following features :  1. Register 2. Login 3. Reset password 4. Open Account 5. Account Overview 6. Transfer funds 7. Bill pay 8. Search transactions 9. Loan Request 10. Update contact info",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/cli": "^8.16.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.15",
+    "@babel/preset-env": "^7.22.15",
+    "@babel/register": "^7.22.15",
+    "@wdio/allure-reporter": "^8.16.3",
+    "@wdio/local-runner": "^8.16.4",
+    "@wdio/mocha-framework": "^8.16.3",
+    "@wdio/spec-reporter": "^8.16.3"
+  }
+}
