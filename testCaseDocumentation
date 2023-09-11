@@ -1,0 +1,37 @@
+/test/specs/login.e2e.js
+    positive:
+        1. Should go to login page and check the title
+        4. Should enter the username and password
+        5. should click cant login assert the alert pop up
+
+    Negative:
+        2. should check session location error
+        3. should enter wrong credentials and assert error message
+
+/test/specs/patientsRegistration.e2e.js
+    positive:
+        2. Should register a patient
+    negative:
+        1. Should show the error message when tried to move to next fields
+        3. should check the presence of error message when enetred a string in birthday field
+
+/test/specs/findPatient.e2e.js
+    positive:
+        1. should search by name
+        2. should search by id
+    negative:
+        3. should search which is not in the record
+
+/test/specs/managePrivileges.e2e.js
+    positive:
+        1. should add privilege
+        2. should delete privaleges
+        3. should Search privilege
+    negative:
+        4. should search a privilege not in the existing list
+
+/test/specs/manageServiceTypes.e2e.js
+    Positive:
+        2. Should add new service
+    negative:
+        1. should add new service without filling any details and assert the error message

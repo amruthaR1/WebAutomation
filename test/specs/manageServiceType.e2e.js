@@ -19,7 +19,7 @@ describe("Manage service type", () => {
   before(() => {
     ManageServiceType.open();
   });
-  it("should add new service without filling any details and assert the error message", async () => {
+  it("1. should add new service without filling any details and assert the error message", async () => {
     await ManageServiceType.clickAddService();
     await ManageServiceType.clickSave();
     expect(await ManageServiceType.getErrorMessage()).to.be.equal(
@@ -28,7 +28,7 @@ describe("Manage service type", () => {
     await ManageServiceType.goToManageService();
   });
 
-  it("adding new service - happy path", async () => {
+  it("2. Should add new service", async () => {
     const name = generateRandomString(5);
     await ManageServiceType.clickAddService();
     await ManageServiceType.fillServiceDetails(name, "90");

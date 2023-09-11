@@ -6,7 +6,7 @@ describe("Find Patients", () => {
   before(async () => {
     FindPatient.open();
   });
-  it("should search by name", async () => {
+  it("1. should search by name", async () => {
     await FindPatient.goToSearch();
     await FindPatient.search('test amr');
     expect(
@@ -14,7 +14,7 @@ describe("Find Patients", () => {
     ).to.be.equal("Test");
   });
 
-  it("should search by id", async () => {
+  it("2. should search by id", async () => {
     await FindPatient.goToHome();
     await FindPatient.goToSearch();
     await FindPatient.search("100P6T");
@@ -23,7 +23,7 @@ describe("Find Patients", () => {
     ).to.be.equal("100P6T");
   });
 
-  it("should search which is not in the record", async () => {
+  it("3. should search which is not in the record", async () => {
     await FindPatient.goToHome();
     await FindPatient.goToSearch();
     await FindPatient.search("abcde");

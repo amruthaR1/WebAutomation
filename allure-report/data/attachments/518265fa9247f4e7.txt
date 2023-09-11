@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//*[@id=\"org-openmrs-module-adminui-Privileges-org-openmrs-module-adminui-Privileges-extension\"]"
+}

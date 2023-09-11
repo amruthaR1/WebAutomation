@@ -7,11 +7,11 @@ describe("LogIn Page", () => {
     LogIn.open();
   });
 
-  it("Should go to login page and check the title", async () => {
+  it("1. Should go to login page and check the title", async () => {
     expect(await browser.getTitle()).to.be.equal(LogIn.title);
   });
 
-  it("should check session location error", async () => {
+  it("2. should check session location error", async () => {
     await (
       await (await LogIn.setUserName("admin")).setPassword("Admin123")
     ).clickLogInButton();
@@ -19,7 +19,7 @@ describe("LogIn Page", () => {
     expect(await LogIn.isSessionLoactionErrorMessagePresent()).to.be.true;
   });
 
-  it("should enter wrong credentials and assert error message", async () => {
+  it("3. should enter wrong credentials and assert error message", async () => {
     await (
       await (
         await (await LogIn.setUserName("admin")).setPassword("Admin")
@@ -28,7 +28,7 @@ describe("LogIn Page", () => {
     expect(await LogIn.isInvalidCredentialErrorMessagePresent()).to.be.true;
   });
 
-  it("Should enter the username and password", async () => {
+  it("4. Should enter the username and password", async () => {
     await (
       await (
         await (await LogIn.setUserName("admin")).setPassword("Admin123")
@@ -41,7 +41,7 @@ describe("LogIn Page", () => {
     await logout.click();
   });
 
-  it("should click cant login assert the alert pop up", async () => {
+  it("5. should click cant login assert the alert pop up", async () => {
     LogIn.clickCantLogIn();
 
     expect(await LogIn.isPopUpPresent()).to.be.true;

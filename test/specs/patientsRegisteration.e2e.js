@@ -2,19 +2,35 @@ const chai = require("chai");
 const expect = chai.expect;
 const Patientregistration = require("../pageobjects/patientRegistration.page");
 
+
+function generateRandomString(length) {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+  }
+
+  return result;
+}
+
 describe("Patients Registration", () => {
   before(async () => {
     Patientregistration.open();
   });
 
-  it("Should show the error message when tried to move to next fields", async () => {
+  it(" 1. Should show the error message when tried to move to next fields", async () => {
     await Patientregistration.clickNextButton();
     const errorMessage = await $('[class="field-error"]');
     const exists = await errorMessage.isDisplayed();
     expect(exists).to.be.true;
   });
 
-  it("Should register a patient", async () => {
+  it("2. Should register a patient", async () => {
+
+    const givenName = generateRandomString(5);
     await (
       await (
         await (
@@ -31,7 +47,7 @@ describe("Patients Registration", () => {
                               await (
                                 await (
                                   await Patientregistration.fillGivenName(
-                                    "Amrutha"
+                                    givenName
                                   )
                                 ).fillFamilyName("R")
                               ).clickNextButton()
@@ -51,12 +67,14 @@ describe("Patients Registration", () => {
     await browser.pause(4000);
     expect(
       await (await $('[class="PersonName-givenName"]')).getText()
-    ).to.be.equal("Amrutha");
+    ).to.be.equal(givenName);
 
     await (await $('[class="icon-home small"]')).click();
   });
 
-  it("should check the presence of error message when enetred a string in birthday field", async () => {
+  it("3. should check the presence of error message when enetred a string in birthday field", async () => {
+    await (await $('[class="icon-home small"]')).click();
+    await (await $('[class="icon-user"]')).click();
     await (
       await (
         await (
