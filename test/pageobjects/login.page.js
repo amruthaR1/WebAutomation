@@ -46,6 +46,9 @@ class LogIn extends Page {
   async isPopUpPresent() {
     return await (await $('[class="dialog-instructions"]')).isExisting();
   }
+  async enter(){
+    await browser.keys('Enter');
+  }
 }
 
 module.exports = new LogIn();
