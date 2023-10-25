@@ -2,7 +2,6 @@ const chai = require("chai");
 const expect = chai.expect;
 const Patientregistration = require("../pageobjects/patientRegistration.page");
 
-
 function generateRandomString(length) {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -29,70 +28,48 @@ describe("Patients Registration", () => {
   });
 
   it("2. Should register a patient", async () => {
-
     const givenName = generateRandomString(5);
-    await (
-      await (
-        await (
-          await (
-            await (
-              await (
-                await (
-                  await (
-                    await (
-                      await (
-                        await (
-                          await (
-                            await (
-                              await (
-                                await (
-                                  await Patientregistration.fillGivenName(
-                                    givenName
-                                  )
-                                ).fillFamilyName("R")
-                              ).clickNextButton()
-                            ).selectGender("Female")
-                          ).clickNextButton()
-                        ).fillBirthdayDate("01")
-                      ).fillBirthdayMonth("January")
-                    ).fillBirthdayYear("2001")
-                  ).clickNextButton()
-                ).fillAddress()
-              ).clickNextButton()
-            ).fillPhoneNumber("123456")
-          ).clickNextButton()
-        ).fillRelation()
-      ).clickNextButton()
-    ).submit();
+
+    await Patientregistration.fillGivenName(givenName)
+      .fillFamilyName("R")
+      .clickNextButton()
+      .selectGender("Female")
+      .clickNextButton()
+      .fillBirthdayDate("01")
+      .fillBirthdayMonth("January")
+      .fillBirthdayYear("2001")
+      .clickNextButton()
+      .fillAddress()
+      .clickNextButton()
+      .fillPhoneNumber("123456")
+      .clickNextButton()
+      .fillRelation()
+      .clickNextButton()
+      .submit();
     await browser.pause(4000);
-    expect(
-      await (await $('[class="PersonName-givenName"]')).getText()
-    ).to.be.equal(givenName);
+    expect(await $('[class="PersonName-givenName"]'))
+      .getText()
+      .to.be.equal(givenName);
 
     await (await $('[class="icon-home small"]')).click();
   });
 
   it("3. should check the presence of error message when enetred a string in birthday field", async () => {
-    await (await $('[class="icon-home small"]')).click();
-    await (await $('[class="icon-user"]')).click();
-    await (
-      await (
-        await (
-          await (
-            await (
-              await (
-                await Patientregistration.fillGivenName("AAAA")
-              ).fillFamilyName("BBBB")
-            ).clickNextButton()
-          ).selectGender("Male")
-        ).clickNextButton()
-      ).fillBirthdayDate("abc")
-    ).clickNextButton();
+    await $('[class="icon-home small"]').click();
+    await $('[class="icon-user"]').click();
+
+    await Patientregistration.fillGivenName("AAAA")
+      .fillFamilyName("BBBB")
+      .clickNextButton()
+      .selectGender("Male")
+      .clickNextButton()
+      .fillBirthdayDate("abc")
+      .clickNextButton();
 
     expect(
-      await (await $(
+      await $(
         "/html/body/div/div[3]/form/section[1]/div/fieldset[3]/p[2]/span"
-      )).isDisplayed()
+      ).isDisplayed()
     ).to.be.true;
   });
 });

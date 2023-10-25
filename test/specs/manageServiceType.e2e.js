@@ -1,19 +1,7 @@
 const chai = require("chai");
 const expect = chai.expect;
 const ManageServiceType = require("../pageobjects/manageServiceType.page");
-
-function generateRandomString(length) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    result += characters.charAt(randomIndex);
-  }
-
-  return result;
-}
+const generateRandomName = require("../../utility/generateRandomName")
 
 describe("Manage service type", () => {
   before(() => {
@@ -29,7 +17,7 @@ describe("Manage service type", () => {
   });
 
   it("2. Should add new service", async () => {
-    const name = generateRandomString(5);
+    const name = generateRandomName(5);
     await ManageServiceType.clickAddService();
     await ManageServiceType.fillServiceDetails(name, "90");
     await ManageServiceType.clickSave();

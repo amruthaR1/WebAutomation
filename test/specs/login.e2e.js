@@ -12,28 +12,24 @@ describe("LogIn Page", () => {
   });
 
   it("2. should check session location error", async () => {
-    await (
-      await (await LogIn.setUserName("admin")).setPassword("Admin123")
-    ).clickLogInButton();
+    await LogIn.setUserName("admin").setPassword("Admin123").clickLogInButton();
 
     expect(await LogIn.isSessionLoactionErrorMessagePresent()).to.be.true;
   });
 
   it("3. should enter wrong credentials and assert error message", async () => {
-    await (
-      await (
-        await (await LogIn.setUserName("admin")).setPassword("Admin")
-      ).setSessionLocation("Laboratory")
-    ).clickLogInButton();
+    await LogIn.setUserName("admin")
+      .setPassword("Admin")
+      .setSessionLocation("Laboratory")
+      .clickLogInButton();
     expect(await LogIn.isInvalidCredentialErrorMessagePresent()).to.be.true;
   });
 
   it("4. Should enter the username and password", async () => {
-    await (
-      await (
-        await (await LogIn.setUserName("admin")).setPassword("Admin123")
-      ).setSessionLocation("Laboratory")
-    ).clickLogInButton();
+    await LogIn.setUserName("admin")
+      .setPassword("Admin123")
+      .setSessionLocation("Laboratory")
+      .clickLogInButton();
 
     expect(await browser.getTitle()).to.be.equal("Home");
 
